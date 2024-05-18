@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <easyx.h>
+
 #include "Color.h"
 
 #if UNICODE
