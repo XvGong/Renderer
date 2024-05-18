@@ -16,14 +16,14 @@ public:
         , _max(_width* _height)
     {
         _hwnd = initgraph(_width, _height);
-        _screen_buffer = GetImageBuffer(NULL);
-        _batch_buffer = new DWORD[_max];
+        _screen = GetImageBuffer(NULL);
+        _buffer = new DWORD[_max];
         //BeginBatchDraw();
     }
 
     ~Device() {
         closegraph();
-        delete[] _batch_buffer;
+        delete[] _buffer;
         //EndBatchDraw();
     }
 
@@ -41,13 +41,13 @@ public:
     }
 
     void mix(int x, int y, Color color) {
-        DWORD src = _batch_buffer[y * _width + x];
-        _batch_buffer[y * _width + x] = color.mix(src);
+        DWORD src = _buffer[y * _width + x];
+        _buffer[y * _width + x] = color.mix(src);
     }
 
     DWORD get(int x, int y) {
         try {
-            return _screen_buffer[y * _width + x];
+            return _buffer[y * _width + x];
         }
         catch (exception& e) {
             std::cerr << e.what() << "\n";
@@ -75,14 +75,14 @@ public:
                 else {
                     color = 0xcccccc;
                 }
-                _batch_buffer[y * _width + x] = color;
+                _buffer[y * _width + x] = color;
             }
         }
     }
 
     inline void flush() {
         for (int i = 0; i < _max; i++) {
-            _screen_buffer[i] = _batch_buffer[i];
+            _screen[i] = _buffer[i];
         }
         //FlushBatchDraw();
     }
@@ -90,6 +90,6 @@ public:
 private:
 
     HWND _hwnd;
-    DWORD *_batch_buffer = nullptr, *_screen_buffer = nullptr;
+    DWORD *_buffer = nullptr, *_screen = nullptr;
     int _width = 0, _height = 0, _max = 0;
 };
