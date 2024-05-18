@@ -11,6 +11,7 @@ using String = std::wstring;
 using String = std::string;
 #endif
 
+class Device;
 class Image {
 	friend class Device;
 public:
