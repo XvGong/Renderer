@@ -6,8 +6,6 @@
 
 #include "Image.h"
 
-using std::exception;
-
 class Device {
 public:
     Device(int width, int height)
@@ -49,7 +47,7 @@ public:
         try {
             return _buffer[y * _width + x];
         }
-        catch (exception& e) {
+        catch (std::exception& e) {
             std::cerr << e.what() << "\n";
             exit(-1);
         }

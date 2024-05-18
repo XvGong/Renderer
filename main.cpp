@@ -9,8 +9,8 @@ int main() {
     
     auto renderer = Renderer::createRenderer(&device);
 
-    Image img1("D:/Project/Render/1.png");
-    Image img2("D:/Project/Render/2.png");
+    Image img1("D:/Project/Renderer/1.png");
+    Image img2("D:/Project/Renderer/2.png");
 
     auto task1 = new RenderObject(&img1, 10, 10, 5);
     auto task2 = new RenderObject(&img2, 50, 50, 7);
