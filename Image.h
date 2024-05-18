@@ -5,7 +5,7 @@
 #include <easyx.h>
 
 #include "Color.h"
-
+ 
 #if UNICODE
 using String = std::wstring;
 #else
