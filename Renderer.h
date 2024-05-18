@@ -6,6 +6,11 @@
 #include"Device.h"
 
 class Renderer {
+	struct CompareByOrder {
+		bool operator()(const RenderObject* a, const RenderObject* b) const {
+			return a->_layerOrder > b->_layerOrder;
+		}
+	};
 public:
 	static Renderer* createRenderer(Device* device) {
 		if (device)
@@ -60,6 +65,6 @@ private:
 	}
 private:
 	Device* _device;
-	std::set<RenderObject*> _renderObjects;
+	std::set<RenderObject*, CompareByOrder> _renderObjects;
 	std::set<RenderObject*> _renderObjects_to_del;
 };

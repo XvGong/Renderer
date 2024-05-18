@@ -2,8 +2,6 @@
 
 #include "Image.h"
 
-class Renderer;
-
 class RenderObject {
 	friend class Renderer;
 public:
@@ -16,8 +14,8 @@ public:
 	
 	}
 
-	bool operator <(const RenderObject& obj) const{
-		return obj._layerOrder < _layerOrder;
+	bool operator <(const RenderObject* obj) const{
+		return _layerOrder < obj->_layerOrder;
 	}
 private:
 	Image* _img=nullptr;
