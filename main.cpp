@@ -26,5 +26,7 @@ int main() {
 
     std::cin.get();
 
+    Renderer::deleteRenderer(renderer);
+
     return 0;
 }

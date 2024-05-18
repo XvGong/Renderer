@@ -22,27 +22,34 @@ public:
 	}
 
 	static void deleteRenderer(Renderer* renderer) {
-		if (renderer)
+		if (renderer) {
+			renderer->clearAllObjects();
 			delete renderer;
+		}
 	}
 
 	void addRenderObject(RenderObject* renderObj) {
 		_renderObjects.insert(renderObj);
 	}
+
 	void delRenderObject(RenderObject* renderObj) {
 		if (_renderObjects.erase(renderObj))
 			_renderObjects_to_del.insert(renderObj);
 	}
+
+	void clearAllObjects() {
+		for (auto i : _renderObjects) {
+			_renderObjects_to_del.insert(i);
+		}
+		_renderObjects.clear();
+	}
+
 	void render() {
 		_device->clear();
 		for (auto& obj : _renderObjects) {
 			_device->putimage(obj->_img, obj->_x, obj->_y);
 		}
 		_device->flush();
-		for (auto& obj : _renderObjects_to_del) {
-			delete obj;
-		}
-		_renderObjects_to_del.clear();
 	}
 private:
 	Renderer(Device* device) {
@@ -51,16 +58,11 @@ private:
 	}
 	~Renderer() {
 		_device = nullptr;
-		
-		for (auto& obj : _renderObjects) {
-			_device->putimage(obj->_img, obj->_x, obj->_y);
-		}
 
 		for (auto& obj : _renderObjects_to_del) {
 			delete obj;
 		}
 
-		_renderObjects.clear();
 		_renderObjects_to_del.clear();
 	}
 private:
