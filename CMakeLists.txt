@@ -1,11 +1,20 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.24)
 
 project(Renderer)
 
-aux_source_directory(. DIR_SRCS)
+set(SOURCES
+	main.cpp	
+	Color.h
+	Device.h
+	Image.h
+	Renderer.h
+	RenderObject.h
+)
 
-include_directories(include)
-link_directories(lib)
+include_directories(inc)
 
-add_executable(Renderer ${DIR_SRCS})
-target_link_libraries(Renderer EasyXa)
+link_libraries(easyx)
+
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib)
+
+add_executable(${PROJECT_NAME} ${SOURCES})

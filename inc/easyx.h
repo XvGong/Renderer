@@ -1,11 +1,3 @@
-/******************************************************
- * EasyX Library for C++ (Ver:2023¥Û Ó∞Ê)
- * https://easyx.cn
- *
- * EasyX.h
- *		Provides the latest API.
- ******************************************************/
-
 #pragma once
 
 #ifndef WINVER
@@ -19,13 +11,6 @@
 #ifndef _WIN32_WINDOWS
 #define _WIN32_WINDOWS 0x0410	// Specifies that the minimum required platform is Windows 98
 #endif
-
-#ifdef UNICODE
-	#pragma comment(lib,"EasyXw.lib")
-#else
-	#pragma comment(lib,"EasyXa.lib")
-#endif
-
 
 #ifndef __cplusplus
 #error EasyX is only for C++

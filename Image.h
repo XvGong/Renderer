@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include "include/easyx.h"
+#include "easyx.h"
 
 #include "Color.h"
  
